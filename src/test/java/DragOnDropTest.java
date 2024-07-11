@@ -21,18 +21,24 @@ public class DragOnDropTest {
     }
 
     @Test
-    void  testDragAndDrop() {
+    void  dragAndDropTestAction() {
         open("/drag_and_drop");
         SelenideElement cubeA = $("#column-a");
         SelenideElement cubeB = $("#column-b");
-        //$("#column-a").dragAndDrop((DragAndDropOptions) $("#column-b")); // не работает :(
         WebDriver driver = getWebDriver();
         Actions actions = new Actions(driver);
-        //actions.dragAndDrop(cubeA, cubeB).perform(); // работает
         actions.clickAndHold(cubeA)
                 .moveToElement(cubeB)
                 .release()
                 .perform();
+        $("#column-b").shouldHave(text("A"));
+    }
+    @Test
+    void  dragAndDropTest() {
+        open("/drag_and_drop");
+        $("#column-a").shouldHave(text("A"));
+        $("#column-b").shouldHave(text("B"));
+        $("#column-a").dragAndDrop(DragAndDropOptions.to($("#column-b")));
         $("#column-b").shouldHave(text("A"));
     }
 }
