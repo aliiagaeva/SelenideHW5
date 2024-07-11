@@ -20,6 +20,5 @@ public class OpenGitHubEnterpriseTest {
         $$(".HeaderMenu-link").findBy(text("Solutions")).hover();
         $$(".HeaderMenu-dropdown-link").findBy(text("Enterprise")).click();
         $("#hero-section-brand-heading").shouldHave(text("The AI-powered developer platform"));
-        sleep(5000);
     }
 }
